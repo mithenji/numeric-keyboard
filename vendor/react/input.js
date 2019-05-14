@@ -25,7 +25,7 @@ export class NumericInput extends Parent {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (nextProps.value !== this.props.value) {
+    if (nextProps.value !== this.props.value && nextProps.value !== this.ks.value) {
       const rawValue = nextProps.value.toString().split('')
       const cursorPos = rawValue.length
       this.set('rawValue', rawValue)
@@ -54,7 +54,7 @@ export class NumericInput extends Parent {
   destroyKeyboard(el) {
     ReactDOM.unmountComponentAtNode(el)
   }
-  
+
   dispatch(event, payload) {
     const callback = this.props[`on${capitalize(event)}`]
     if (callback) {

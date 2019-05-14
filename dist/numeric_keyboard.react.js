@@ -2102,7 +2102,7 @@ function (_Parent) {
   }, {
     key: "shouldComponentUpdate",
     value: function shouldComponentUpdate(nextProps) {
-      if (nextProps.value !== this.props.value) {
+      if (nextProps.value !== this.props.value && nextProps.value !== this.ks.value) {
         var rawValue = nextProps.value.toString().split('');
         var cursorPos = rawValue.length;
         this.set('rawValue', rawValue);
@@ -2736,13 +2736,15 @@ var Mixins = {
       }(new RegExp(options.format));
     }
 
-    var rawValue = options.value.toString().split('');
+    var value = options.value;
+    var rawValue = value.toString().split('');
     var cursorPos = rawValue.length;
     this.time = null; // fix 按键过快 bug
 
     this.kp = options;
     this.ks = {
       formatFn: formatFn,
+      value: value,
       rawValue: rawValue,
       cursorPos: cursorPos,
       cursorColor: null,

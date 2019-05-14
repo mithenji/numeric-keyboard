@@ -1,12 +1,8 @@
 {
   "name": "numeric-keyboard",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Numeric keyboard for mobile browsers",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:viclm/numeric-keyboard.git"
-  },
-  "main": "dist/numeric_keyboard.vanilla.js",
+  "repository": "viclm/numeric-keyboard",
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "dev": "webpack-dev-server --config webpack.conf.dev.js",

@@ -1,19 +1,18 @@
-const path = require('path')
-const webpackConfigs = require('../webpack.conf.build.js')
+const path = require('path');
+const webpackConfigs = require('../webpack.conf.build.js');
 
-const webpackConfig = webpackConfigs[0]
+const webpackConfig = webpackConfigs[0];
 
-delete webpackConfig.entry
-delete webpackConfig.output
-webpackConfig.devtool = 'inline-source-map'
+delete webpackConfig.entry;
+delete webpackConfig.output;
+webpackConfig.devtool = 'inline-source-map';
 
-const browsers = ['ChromeHeadless']
+const browsers = ['ChromeHeadless'];
 if (process.env.TRAVIS) {
   if (process.env.TRAVIS_OS_NAME === 'linux') {
-    browsers.push('Chrome')
-  }
-  else if (process.env.TRAVIS_OS_NAME === 'osx') {
-    browsers.push('Safari')
+    browsers.push('Chrome');
+  } else if (process.env.TRAVIS_OS_NAME === 'osx') {
+    browsers.push('Safari');
   }
 }
 
@@ -41,13 +40,13 @@ module.exports = function(config) {
           '--no-sandbox',
           '--headless',
           '--disable-gpu',
-          '--remote-debugging-port=9222',
-        ],
-      },
+          '--remote-debugging-port=9222'
+        ]
+      }
     },
     concurrency: Infinity,
     port: 4242,
     singleRun: process.env.TRAVIS,
     autoWatch: !process.env.TRAVIS
-  })
-}
+  });
+};

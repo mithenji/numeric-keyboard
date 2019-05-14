@@ -2344,6 +2344,10 @@ var NumericInput = vue__WEBPACK_IMPORTED_MODULE_4___default.a.extend({
   },
   watch: {
     value: function value(newValue) {
+      if (newValue === this.ks.value) {
+        return;
+      }
+
       var rawValue = newValue.toString().split('');
       var cursorPos = rawValue.length;
       this.set('rawValue', rawValue);
@@ -2670,13 +2674,15 @@ var Mixins = {
       }(new RegExp(options.format));
     }
 
-    var rawValue = options.value.toString().split('');
+    var value = options.value;
+    var rawValue = value.toString().split('');
     var cursorPos = rawValue.length;
     this.time = null; // fix 按键过快 bug
 
     this.kp = options;
     this.ks = {
       formatFn: formatFn,
+      value: value,
       rawValue: rawValue,
       cursorPos: cursorPos,
       cursorColor: null,

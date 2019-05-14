@@ -3557,12 +3557,14 @@ function (_Parent) {
   }, {
     key: "setProps",
     value: function setProps(nextProps) {
-      _babel_runtime_helpers_get__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(NumericInput.prototype), "setProps", this).call(this, nextProps);
+      if (nextProps.value !== this.props.value && nextProps.value !== this.ks.value) {
+        var rawValue = nextProps.value.toString().split('');
+        var cursorPos = rawValue.length;
+        this.set('rawValue', rawValue);
+        this.set('cursorPos', cursorPos);
+      }
 
-      var rawValue = nextProps.value.toString().split('');
-      var cursorPos = rawValue.length;
-      this.set('rawValue', rawValue);
-      this.set('cursorPos', cursorPos);
+      _babel_runtime_helpers_get__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_9___default()(NumericInput.prototype), "setProps", this).call(this, nextProps);
     }
   }, {
     key: "set",
@@ -3902,13 +3904,15 @@ var Mixins = {
       }(new RegExp(options.format));
     }
 
-    var rawValue = options.value.toString().split('');
+    var value = options.value;
+    var rawValue = value.toString().split('');
     var cursorPos = rawValue.length;
     this.time = null; // fix 按键过快 bug
 
     this.kp = options;
     this.ks = {
       formatFn: formatFn,
+      value: value,
       rawValue: rawValue,
       cursorPos: cursorPos,
       cursorColor: null,
