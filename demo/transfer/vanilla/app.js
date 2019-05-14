@@ -132,40 +132,40 @@ export default class App {
     this.render()
   }
 
-  inputAmount(amount) {
-    this.amount = amount
-    this.el.querySelector('input[type=submit]').disabled = !amount
-  }
-
-  confirmAmount(e) {
-    if (e) {
-      e.preventDefault()
+    inputAmount (amount) {
+        this.amount = amount;
+        this.el.querySelector('input[type=submit]').disabled = !amount;
     }
-    if (this.amount) {
-      const elPassword = document.createElement('div')
-      this.el.appendChild(elPassword)
-      new Password(elPassword, { onConfirm: this.confirmPassword.bind(this) })
+
+    confirmAmount (e) {
+        if (e) {
+            e.preventDefault();
+        }
+        if (this.amount) {
+            const elPassword = document.createElement('div');
+            this.el.appendChild(elPassword);
+            new Password(elPassword, { onConfirm: this.confirmPassword.bind(this) });
+        }
     }
-  }
 
-  confirmPassword(password) {
-    this.el.removeChild(this.el.querySelector('.password'))
-    setTimeout(() => alert(`Amount: ${this.amount}\nPassword: ${password}`), 200)
-  }
+    confirmPassword (password) {
+        this.el.removeChild(this.el.querySelector('.password'));
+        setTimeout(() => alert(`Amount: ${this.amount}\nPassword: ${password}`), 200);
+    }
 
-  render() {
-    this.el.outerHTML = AppTemplate
-    this.el = document.querySelector('.app')
+    render () {
+        this.el.outerHTML = AppTemplate;
+        this.el = document.querySelector('.app');
 
-    new NumericInput({
-      type: 'number',
-      autofocus: true,
-      entertext: 'Confirm',
-      format: '^(?:\\d+(?:\\.\\d{0,2})?)?$',
-      onInput: this.inputAmount.bind(this),
-      onEnterpress: this.confirmAmount.bind(this)
-    }).mount('.input div')
+        new NumericInput({
+            type: 'number',
+            autofocus: true,
+            entertext: 'Confirm',
+            format: '^(?:\\d+(?:\\.\\d{0,2})?)?$',
+            onInput: this.inputAmount.bind(this),
+            onEnterpress: this.confirmAmount.bind(this)
+        }).mount('.input div');
 
-    this.el.querySelector('form').addEventListener('submit', this.confirmAmount.bind(this), false)
-  }
+        this.el.querySelector('form').addEventListener('submit', this.confirmAmount.bind(this), false);
+    }
 }

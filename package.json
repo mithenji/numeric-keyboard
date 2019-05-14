@@ -68,5 +68,8 @@
     "angular",
     "vue"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "numeric-keyboard": "^0.6.0"
+  }
 }

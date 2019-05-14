@@ -1,6 +1,6 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const babelConfig = require('./babel.conf.js')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const babelConfig = require('./babel.conf.js');
 
 function factory(vendor) {
 
@@ -27,7 +27,7 @@ function factory(vendor) {
         {
           test: /\.js$/,
           exclude: /node_modules|dist/,
-          use: [{ loader: 'babel-loader', options: babelConfig(vendor) }]
+          use: [{loader: 'babel-loader', options: babelConfig(vendor)}]
         },
         {
           test: /\.component.styl$/,
@@ -56,11 +56,12 @@ function factory(vendor) {
       new HtmlWebpackPlugin({
         filename: `${vendor}.html`,
         template: 'demo/transfer/index.template.html',
-        meta: { vendor }
+        meta: {vendor}
       })
     ]
-  }
+  };
 
 }
 
-module.exports = ['vanilla', 'react', 'vue', 'angular'].map(vendor => factory(vendor))
+module.exports = ['vanilla', 'react', 'vue'].map(vendor => factory(vendor));
+console.log(module.exports);
